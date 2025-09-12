@@ -4,6 +4,7 @@ import os
 from core_settings.installed_apps import *
 from core_settings.cors_settings import *
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,7 +92,7 @@ WSGI_APPLICATION = 'taskly.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://postgres:Alfieolli@localhost:5432/taskly',
+        default=config("POSTGRES_URI"),
         conn_max_age=600
     )
 }

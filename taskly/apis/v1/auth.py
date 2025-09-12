@@ -1,7 +1,8 @@
 from django.core.exceptions import ValidationError
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from django.shortcuts import get_object_or_404
 from ninja import Router, FormEx
+from ninja.errors import ValidationError
 # from ninja.security import django_auth
 from typing import List, Union, Any
 from django.contrib.auth import logout as contrib_logout
@@ -11,6 +12,8 @@ from django.contrib.auth import authenticate, login
 from apis.schema.auth import *
 from plugins.hasher import hasherGenerator, decrypter
 from users.models import *
+
+
 
 
 from ninja.security import HttpBearer
@@ -44,6 +47,32 @@ def register_user_with_email(
         return {"message": f"Registration successful. UserID: {user.id}"}
     except IntegrityError:
         raise ValidationError("Username or email already exists.")
+
+
+
+
+@router.post("/register-admin/", auth=None)
+def register_admin(
+    request,
+    password: str = FormEx(...),
+    passwordConfirm: str = FormEx(...),
+    user_data: AuthUserRegistrationSchema = FormEx(...),
+):
+    if password != passwordConfirm:
+        raise ValidationError("Passwords do not match.")
+
+    try:
+        with transaction.atomic():
+            user = AuthUser.objects.create_superuser(
+                username=user_data.username,
+                email=user_data.email,
+                password=password,
+                **user_data.dict(exclude={"username", "email"})  # avoid duplicates
+            )
+        return {"message": f"SuperAdmin created successfully. UserID: {user.id}"}
+    except IntegrityError:
+        raise ValidationError("Username or email already exists.")
+
 
 
     

@@ -1,6 +1,14 @@
 // BACKEND_URL = "http://127.0.0.1:8000"   
 const BACKEND_URL = "https://taskly-f9fl.onrender.com"
 
+function showLoader() {
+    document.getElementById("apiLoader").style.display = "block";
+}
+
+function hideLoader() {
+    document.getElementById("apiLoader").style.display = "none";
+}
+
 
 function requireLogin() {
     const token = localStorage.getItem("access_token");
@@ -12,6 +20,8 @@ function requireLogin() {
 async function logout() {
     const token = localStorage.getItem("access_token");
     if (token) {
+        showLoader();
+
         try {
             const response = await fetch(`${BACKEND_URL}/api/v1/auth/logout/`, {
                 method: "POST",
@@ -29,6 +39,8 @@ async function logout() {
             }
         } catch (error) {
             console.error("Logout error:", error);
+        }finally {
+            hideLoader(); // 👈 always hide
         }
     }
 }
@@ -36,12 +48,14 @@ async function logout() {
 async function refreshTasksUI() {
     await getTasks();
     tasks();
+    document.dispatchEvent(new Event("tasksUpdated"));
 }
 
 
 async function changeTaskStatus(task_id) {
     const token = localStorage.getItem("access_token");
     if (token) {
+        showLoader();
         try {
             const response = await fetch(`${BACKEND_URL}/api/v1/tasks/${task_id}/update_task_status/`, {
                 method: "PUT",
@@ -59,6 +73,8 @@ async function changeTaskStatus(task_id) {
             }
         } catch (error) {
             console.error("Update error:", error);
+        }finally {
+            hideLoader(); // 👈 always hide
         }
     }
 }
@@ -67,6 +83,7 @@ async function changeTaskStatus(task_id) {
 async function deleteTask(task_id) {
     const token = localStorage.getItem("access_token");
     if (token) {
+        showLoader();
         try {
             const response = await fetch(`${BACKEND_URL}/api/v1/tasks/${task_id}/delete/`, {
                 method: "DELETE",
@@ -86,6 +103,8 @@ async function deleteTask(task_id) {
             }
         } catch (error) {
             console.error("Delete error:", error);
+        }finally {
+            hideLoader(); // 👈 always hide
         }
     }
 }
@@ -93,6 +112,7 @@ async function deleteTask(task_id) {
 async function editTask(task_id) {
     const token = localStorage.getItem("access_token");
     if (token) {
+        showLoader();
         try {
             // Get values from the modal inputs
             const title = document.querySelector(`#editTaskModal-${task_id} #modalTitle`).value;
@@ -119,6 +139,8 @@ async function editTask(task_id) {
             }
         } catch (error) {
             console.error("Update error:", error);
+        }finally {
+            hideLoader(); // 👈 always hide
         }
     }
 }
@@ -127,6 +149,7 @@ async function editTask(task_id) {
 async function changeTaskPriority(task_id) {
     const token = localStorage.getItem("access_token");
     if (token) {
+        showLoader();
         try {
             const priority = document.querySelector(`#prioritySelect-${task_id}`).value;
 
@@ -150,6 +173,8 @@ async function changeTaskPriority(task_id) {
             }
         } catch (error) {
             console.error("Priority update error:", error);
+        }finally {
+            hideLoader(); // 👈 always hide
         }
     }
 }
@@ -157,6 +182,7 @@ async function changeTaskPriority(task_id) {
 async function addTask() {
     const token = localStorage.getItem("access_token");
     if (token) {
+        showLoader();
         try {
             const title = document.getElementById("newTaskTitle").value;
             const description = document.getElementById("newTaskDescription").value;
@@ -183,6 +209,8 @@ async function addTask() {
             }
         } catch (error) {
             console.error("Add error:", error);
+        }finally {
+            hideLoader(); // 👈 always hide
         }
     }
 }

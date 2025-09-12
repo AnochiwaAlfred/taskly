@@ -2619,7 +2619,35 @@
                }
 
             // analytics10
-                var analytics10 = jQuery('#analytics10')
+
+
+
+            // chart.js
+
+            // chart.js
+            // let chartDonut2 = null;
+
+            document.addEventListener("tasksUpdated", () => {
+                const seriesData = [
+                    window.TasksData.lowPriority.length,
+                    window.TasksData.midPriority.length,
+                    window.TasksData.highPriority.length
+                ];
+
+                if (chartDonut2) {
+                    chartDonut2.updateSeries(seriesData);
+                } else {
+                    chartDonut2 = new ApexCharts(document.querySelector('#analytics10'), {
+                        chart: { type: 'donut' },
+                        labels: ['Low', 'Mid', 'High'],
+                        series: seriesData,
+                    });
+                    chartDonut2.render();
+                }
+            });
+
+
+            var analytics10 = jQuery('#analytics10')
             if (analytics10.length > 0) {
 
               await window.getTasks();

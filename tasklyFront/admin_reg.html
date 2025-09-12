@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Taskly - Login</title>
+    <title>Taskly - Add Admin</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Admin template that can be used to build dashboards for CRM, CMS, etc." />
@@ -25,6 +25,7 @@
         <!-- begin app-wrap -->
         <div class="app-wrap">
             <!-- begin pre-loader -->
+            <div id="apiLoader" class="apiLoader" style="display: none;"></div>
 
             <div class="loader">
                 <div class="h-100 d-flex justify-content-center">
@@ -42,42 +43,42 @@
                         <div class="row no-gutters">
                             <div class="col-sm-6 col-lg-5 col-xxl-3  align-self-center order-2 order-sm-1">
                                 <div class="d-flex align-items-center h-100-vh">
-                                    <div class="login p-50">
-                                        <h1 class="mb-2">We Are Taskly</h1>
-                                        <p>Welcome back, please login to your account.</p>
-                                        <p class="error text-danger font-bold p-2 mt-3" style="background-color: #ff000020; display:none;"  id="loginErrorMessage"></p>
-                                        <form class="mt-2 mt-sm-4">
-                                            <div id="apiLoader" class="apiLoader" style="display: none;"></div>
-
+                                    <div class="register p-5">
+                                        <h1 class="mb-2">We are Taskly</h1>
+                                        <p>Welcome, Please create your account.</p>
+                                        <p class="error text-danger font-bold p-2 mt-3" style="background-color: #ff000020; display:none;"  id="registerErrorMessage"></p>
+                                        <form id="registerForm" class="mt-2 mt-sm-4">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Email*</label>
-                                                        <input type="text" id="loginEmail" class="form-control" placeholder="Email" />
+                                                        <input type="email" class="form-control" id="email" placeholder="Email" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Username*</label>
+                                                        <input type="text" class="form-control" id="username" placeholder="Username" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Password*</label>
-                                                        <input type="password" id="loginPassword" class="form-control" placeholder="Password" />
+                                                        <input type="password" class="form-control" id="password" placeholder="Password" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="d-block d-sm-flex  align-items-center">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                            <label class="form-check-label" for="gridCheck">
-                                                                Remember Me
-                                                            </label>
-                                                        </div>
-                                                        <a href="javascript:void(0);" class="ml-auto">Forgot Password ?</a>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Confirm Password*</label>
+                                                        <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" />
                                                     </div>
                                                 </div>
-                                                <div class="col-12 mt-3">
-                                                    <input type="button" value="Sign In" onclick="AuthLogin(event)" class="btn btn-primary text-uppercase">
+                                               
+                                                <div class="col-12 mt-3 ">
+                                                    <input type="button" value="Sign Up" class="btn btn-primary text-uppercase" onclick="AuthRegisterAdmin(event)">
                                                 </div>
                                                 <div class="col-12  mt-3">
-                                                    <p>Don't have an account ?<a href="register.html"> Sign Up</a></p>
+                                                    <p>Already have an account ?<a href="login.html"> Sign In</a></p>
                                                 </div>
                                             </div>
                                         </form>
@@ -95,7 +96,6 @@
                     </div>
                 </div>
             </div>
-            <!--end login contant-->
         </div>
         <!-- end app-wrap -->
     </div>
@@ -109,15 +109,6 @@
     <!-- custom app -->
     <script src="assets/js/app.js"></script>
     <script src="local/auth.js"></script>
-    <script>
-        document.addEventListener("keypress", (event) => {
-            if (event.key === "Enter") {
-                AuthLogin(event);
-            }
-        });
-    </script>
-
 </body>
-
 
 </html>

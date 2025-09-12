@@ -1,0 +1,14 @@
+postgresql://anochiwaalfred:aaYQ3akyWaPYFF9qxmIxaQE9kV620z57@dpg-d301rpodl3ps739n1k4g-a/taskly_jrp5    internad db url
+
+postgresql://anochiwaalfred:aaYQ3akyWaPYFF9qxmIxaQE9kV620z57@dpg-d301rpodl3ps739n1k4g-a.frankfurt-postgres.render.com/taskly_jrp5  external db url
+
+
+PGPASSWORD=aaYQ3akyWaPYFF9qxmIxaQE9kV620z57 psql -h dpg-d301rpodl3ps739n1k4g-a.frankfurt-postgres.render.com -U anochiwaalfred taskly_jrp5   psql command
+
+
+anochiwaalfred   username
+
+taskly_jrp5 db name
+
+
+dpg-d301rpodl3ps739n1k4g-a   hostname

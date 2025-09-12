@@ -538,6 +538,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderTaskList(filtered, "search");
     });
+
+    document.getElementById("adminLinks").style.display="flex"
 });
 
 

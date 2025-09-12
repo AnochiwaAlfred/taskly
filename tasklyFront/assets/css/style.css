@@ -25,6 +25,7 @@
     --warning: #ffc107;
     --danger: #dc3545;
     --light: #f8f9fa;
+    --lights: #d4d4d4;
     --dark: #343a40;
     --breakpoint-xxxs: 0;
     --breakpoint-xxs: 480px;
@@ -12440,9 +12441,20 @@ a.text-danger:hover {
     color: #f8f9fa !important
 }
 
+
 a.text-light:focus,
 a.text-light:hover {
     color: #dae0e5 !important
+}
+
+.text-lights {
+    color: #d4d4d4 !important
+}
+
+
+a.text-lights:focus,
+a.text-lights:hover {
+    color: #c9c9c9 !important
 }
 
 .text-dark {

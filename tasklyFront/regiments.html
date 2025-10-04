@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGIMENTS</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply Inter font and background to the whole page */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Custom styles for the table (optional, but ensures consistent border color) */
+        .schedule-table {
+            border-collapse: collapse;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid rgba(226, 232, 240, 0.6); /* Tailwind's border-gray-200 equivalent */
+            padding: 1.5rem 0.5rem;
+            min-width: 80px; /* Adjusted min-width slightly for more columns */
+        }
+        /* Style for the day column and header cells (dark blue) */
+        .header-cell {
+            background-color: #831010; /* Blue-600 */
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Base style for content cells (non-banded rows: Tuesday, Thursday, Saturday) */
+        .content-cell {
+            background-color: #F4E9E9; /* Blue-50 */
+            color: #1f2937;
+            text-align: center;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            transition: background-color 0.2s;
+        }
+        .content-cell:hover {
+            background-color: #E7DCDC; /* Blue-100 on hover */
+        }
+
+        /* Style for banded content cells (Monday, Wednesday, Friday, Sunday - slightly darker shade) */
+        .banded-cell {
+            background-color: #e8d0d0; /* A lighter blue/cyan for the banded effect */
+            color: #1f2937;
+            text-align: center;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            transition: background-color 0.2s;
+        }
+        .banded-cell:hover {
+            background-color: #dbbfbf;
+        }
+
+        /* Style for empty cells (white, must override content/banded background) */
+        .empty-cell {
+            background-color: white !important;
+            transition: background-color 0.2s;
+        }
+        .empty-cell:hover {
+            background-color: #f0f9ff !important; /* Very light hover for empty cells */
+        }
+
+        /* Ensure the main container can scroll horizontally on smaller screens */
+        .responsive-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="p-4 sm:p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">REGIMENTS</h1>
+        <div class="bg-white shadow-xl rounded-xl responsive-container">
+            <table class="schedule-table min-w-full">
+                <!-- Table Header: Updated Time Slots (9-12, 1-3) -->
+                <thead>
+                    <tr>
+                        <th class="header-cell sticky left-0 z-10 w-20">DAY</th>
+                        <th class="header-cell">6-8</th>
+                        <th class="header-cell">8-9</th>
+                        <th class="header-cell">9-12</th>
+                        <th class="header-cell">12-1</th>
+                        <th class="header-cell">1-3</th>
+                        <th class="header-cell">3-4</th>
+                        <th class="header-cell">4-5</th>
+                        <th class="header-cell">5-6</th>
+                        <th class="header-cell">6-8</th>
+                        <th class="header-cell">8-9</th>
+                        <th class="header-cell">10-12</th>
+                    </tr>
+                </thead>
+                <!-- Table Body: Schedule Content (11 content columns total) -->
+                <tbody>
+                    <!-- Row: MONDAY (Banded Row) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">MONDAY</td>
+                        <td class="banded-cell">P&L</td>
+                        <td class="banded-cell">MVMT</td>
+                        <td class="banded-cell">WQU</td>
+                        <!-- 12-3 merge: slots 12-1 and 1-3 (colspan=2) -->
+                        <td class="banded-cell" colspan="2">TEL 767 <br> PROF ADEYOMO</td>
+                        <td class="banded-cell">READ/NOTE</td>
+                        <td class="banded-cell">MVMT</td>
+                        <!-- 5-9 merge: slots 5-6, 6-8, 8-9 (colspan=3) -->
+                        <td class="banded-cell" colspan="3">MBS</td>
+                        <td class="banded-cell">READ/NOTE</td>
+                    </tr>
+                    <!-- Row: TUESDAY (Normal Row) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">TUESDAY</td>
+                        <td class="content-cell">P&L</td>
+                        <td class="content-cell">MVMT</td>
+                        <td class="content-cell">READ/NOTE</td>
+                        <!-- 12-3 merge: slots 12-1 and 1-3 (colspan=2) -->
+                        <td class="content-cell" colspan="2">TEL 762 <br> PROF OLAKANMI</td>
+                        <!-- 3-5 merge: slots 3-4 and 4-5 (colspan=2). Content WQU (WOU corrected to WQU) -->
+                        <td class="content-cell" colspan="2">WQU</td>
+                        <!-- 5-7 merge: slots 5-6 and 6-8 (colspan=2) -->
+                        <td class="content-cell" colspan="2">MVMT</td>
+                        <!-- 7-9 merge: slot 8-9 (colspan=1). Content REST (from image/correction) -->
+                        <td class="content-cell">REST</td>
+                        <td class="content-cell">READ/NOTE</td>
+                    </tr>
+                    <!-- Row: WEDNESDAY (Banded Row) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">WEDNESDAY</td>
+                        <td class="banded-cell">P&L</td>
+                        <td class="banded-cell">MVMT</td>
+                        <td class="banded-cell">TEL 732 <br> PROF ZUBAIR</td>
+                        <td class="banded-cell">WQU</td>
+                        <td class="banded-cell">READ/NOTE</td>
+                        <!-- 3-5 merge: slots 3-4 and 4-5 (colspan=2) -->
+                        <td class="banded-cell" colspan="2">PROJECT</td>
+                        <!-- 5-7 merge: slots 5-6 and 6-8 (colspan=2) -->
+                        <td class="banded-cell" colspan="2">MVMT</td>
+                        <!-- 7-9 merge: slot 8-9 (colspan=1). Content REST (from image/correction) -->
+                        <td class="banded-cell">REST</td>
+                        <td class="banded-cell">READ/NOTE</td>
+                    </tr>
+                    <!-- Row: THURSDAY (Normal Row) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">THURSDAY</td>
+                        <td class="content-cell">P&L</td>
+                        <td class="content-cell">MVMT</td>
+                        <td class="content-cell">TEL 731 <br> SELECTED PROFS</td>
+                        <!-- 12-3 merge: slots 12-1 and 1-3 (colspan=2) -->
+                        <td class="content-cell" colspan="2">TEL 734 <br> PROF OLAKANMI</td>
+                        <td class="content-cell">WQU</td>
+                        <td class="content-cell">PROJECT</td>
+                        <td class="content-cell">MVMT</td>
+                        <!-- 6-9 merge: slots 6-8 and 8-9 (colspan=2) -->
+                        <td class="content-cell" colspan="2">TRH</td>
+                        <td class="content-cell">READ/NOTE</td>
+                    </tr>
+                    <!-- Row: FRIDAY (Banded Row) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">FRIDAY</td>
+                        <td class="banded-cell">P&L</td>
+                        <td class="banded-cell">MVMT</td>
+                        <td class="banded-cell">WQU</td>
+                        <!-- 12-3 merge: slots 12-1 and 1-3 (colspan=2) -->
+                        <td class="banded-cell" colspan="2">READ/NOTE</td>
+                        <!-- 3-5 merge: slots 3-4 and 4-5 (colspan=2) -->
+                        <td class="banded-cell" colspan="2">PROJECT</td>
+                        <td class="banded-cell">MVMT</td>
+                        <!-- 7-9 merge: slots 6-8 and 8-9 (colspan=2). Content REST -->
+                        <td class="banded-cell" colspan="2">REST</td>
+                        <td class="banded-cell">READ/NOTE <br> VIGIL</td>
+                    </tr>
+                    <!-- Row: SATURDAY (Normal Row, Content adjusted for MVMT at 3-4) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">SATURDAY</td>
+                        <td class="content-cell">P&L</td>
+                        <td class="content-cell">MVMT</td>
+                        <!-- WQU/PROJECT...: slots 9-12, 12-1, 1-3 (colspan=3) -->
+                        <td class="content-cell" colspan="3">
+                            WQU/PROJECT/READ/NOTE/APPLICATIONS
+                        </td>
+                        <!-- MVMT at 3-4 (Correction implemented) -->
+                        <td class="content-cell">MVMT</td>
+                        
+                        <!-- WTS at 4-9 (colspan=4) -->
+                        <td class="content-cell" colspan="4">WTS</td>
+                      
+                        <!-- REST at 10-12 (colspan=1) -->
+                        <td class="content-cell">REST</td>
+                    </tr>
+                    <!-- Row: SUNDAY (Banded Row, Merges adjusted) -->
+                    <tr>
+                        <td class="header-cell sticky left-0 z-10 w-20">SUNDAY</td>
+                        <!-- 6-12 merge: slots 6-8 and 8-9 (colspan=2). Content SWS -->
+                        <td class="banded-cell" colspan="3">SWS</td>
+                       
+                        <td class="banded-cell">MVMT</td>
+                        <!-- 1-8 merge: slots 1-3, 3-4, 4-5, 5-6, 6-8 (colspan=5) -->
+                        <td class="banded-cell" colspan="5">
+                            READ/NOTE/PROJECT/KOINONIA
+                        </td>
+                        <!-- Empty slot 8-9 (colspan=1) -->
+                        <td class="banded-cell">MVMT</td>
+                        <td class="banded-cell">REST</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Accessibility and Styling Notes -->
+        <p class="text-sm text-gray-500 mt-4 text-center">
+            Note: The day column is sticky on the left to maintain context when scrolling horizontally on smaller screens.
+        </p>
+    </div>
+
+</body>
+</html>
